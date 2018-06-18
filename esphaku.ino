@@ -11,8 +11,8 @@ IPAddress apSubnet(255,255,255,0);
 ESP8266WebServer apServer(80);
 
 bool ffsLoad(String path) {
-Serial.print("in ");
-Serial.println(path);
+//Serial.print("in ");
+//Serial.println(path);
 
   if (path.equals("/")) {
     if (henVersion != 0) {
@@ -47,8 +47,8 @@ Serial.println(path);
   if (path.endsWith("/"))
     path += "index.html";
 
-Serial.print("out ");
-Serial.println(path);
+//Serial.print("out ");
+//Serial.println(path);
 
   File ffsFile = SPIFFS.open(path, "r");
   if (!ffsFile)
@@ -85,8 +85,8 @@ void setup() {
   apServer.onNotFound(handleNotFound);
   apServer.begin();
 
-  Serial.begin(115200);
-  Serial.setDebugOutput(true);
+//Serial.begin(115200);
+//Serial.setDebugOutput(true);
 }
 
 void loop() {
