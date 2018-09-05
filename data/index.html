@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
-		<title>ESPhaku v1.0 by Yoti</title>
+		<title>ESPhaku v1.1 by Yoti</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
 	<body text="#00ff00" bgcolor="#333333" link="#ffff00" alink="#ffff00" vlink="#ffff00">
@@ -11,12 +11,14 @@
 			} else {
 				if ( navigator.userAgent.match(/3.60/i) )
 					location.href = '360haku.html';
-				//else if ( navigator.userAgent.match(/3.65/i) )
-				//	location.href = '365haku.html';
-				//else if ( navigator.userAgent.match(/3.67/i) )
-				//	location.href = '367haku.html';
-				//else if ( navigator.userAgent.match(/3.68/i) )
-				//	location.href = '368haku.html';
+				else if ( navigator.userAgent.match(/3.63/i) )
+					location.href = '365core.html';
+				else if ( navigator.userAgent.match(/3.65/i) )
+					location.href = '365core.html';
+				else if ( navigator.userAgent.match(/3.67/i) )
+					location.href = '365core.html';
+				else if ( navigator.userAgent.match(/3.68/i) )
+					location.href = '365core.html';
 				else
 					location.href = 'wrongfw.html';
 			}
