@@ -66,6 +66,8 @@ bool ffsLoad(String path) {
 }
 
 void handleNotFound() {
+//Serial.print("file: ");
+//Serial.println(apServer.uri());
   // check file from ffs
   if (ffsLoad(apServer.uri()))
     return;
@@ -87,6 +89,7 @@ void setup() {
 
 //Serial.begin(115200);
 //Serial.setDebugOutput(true);
+//Serial.println("ok");
 }
 
 void loop() {
