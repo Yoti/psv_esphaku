@@ -1,7 +1,7 @@
 @echo off
 
 cd data
-rd /q /s 360
+if exist 360 rd /q /s 360
 mkdir 360
 cd 360
 
