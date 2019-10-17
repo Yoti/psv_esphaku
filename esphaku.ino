@@ -28,12 +28,71 @@ bool ffsLoad(String path) {
 //Serial.println("DNS 360");
     }
   }
-  /*else if (path.startsWith("/365")) {
+  else if (path.startsWith("/361")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  }
+  else if (path.startsWith("/363")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  }
+  else if (path.startsWith("/365")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
   }
   else if (path.startsWith("/367")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
   }
   else if (path.startsWith("/368")) {
-  }*/
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  else if (path.startsWith("/369")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  else if (path.startsWith("/370")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  else if (path.startsWith("/371")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  else if (path.startsWith("/372")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  else if (path.startsWith("/373")) {
+    if (henVersion == 0) {
+      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
+      henVersion = 65;
+//Serial.println("DNS 365");
+    }
+  }
 
   if (henVersion == 60) {
     path.replace("go/", "360/");
@@ -42,6 +101,9 @@ bool ffsLoad(String path) {
     path.replace("package/", "");
     path.replace("livearea/", "");
     path.replace("contents/", "");
+  }
+  else if (henVersion == 65) {
+    path.replace("TheOfficialFloW/VitaShell/master/release/", "365/");
   }
 
   if (path.endsWith("/"))
