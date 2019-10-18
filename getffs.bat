@@ -1,14 +1,13 @@
 @echo off
 
 cd data
-if exist 360 rd /q /s 360
-mkdir 360
-cd 360
+if exist go rd /q /s go
+mkdir go
+cd go
 
 wget -q --show-progress http://henkaku.xyz/go/index.html
 wget -q --show-progress http://henkaku.xyz/go/payload.js
 wget -q --show-progress http://henkaku.xyz/go/henkaku.bin
-
 
 wget -q --show-progress --no-check-certificate http://raw.githubusercontent.com/TheOfficialFloW/VitaShell/master/release/eboot.bin
 wget -q --show-progress --no-check-certificate http://raw.githubusercontent.com/TheOfficialFloW/VitaShell/master/release/param.sfo

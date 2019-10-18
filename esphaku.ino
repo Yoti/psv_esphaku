@@ -1,116 +1,33 @@
+/*
+ * Arduino 1.8.5
+ * 
+ * Project: ESPhaku
+ * Version: 1.1
+ * Authors: Yoti
+ * Licence: GPLv3
+ */
+
 #include <FS.h>
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 
 DNSServer dnsServer;
-byte henVersion = 0;
 const byte dnsPort = 53;
 IPAddress apIp(11,22,33,44);
-IPAddress apGate(11,22,33,44);
 IPAddress apSubnet(255,255,255,0);
 ESP8266WebServer apServer(80);
 
 bool ffsLoad(String path) {
-//Serial.print("in ");
-//Serial.println(path);
+  path.replace("pkg/", "");
+  path.replace("sce_sys/", "");
+  path.replace("package/", "");
+  path.replace("livearea/", "");
+  path.replace("contents/", "");
 
-  if (path.equals("/")) {
-    if (henVersion != 0) {
-      dnsServer.stop();
-      henVersion = 0;
-//Serial.println("DNS off");
-    }
-  }
-  else if (path.startsWith("/360")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "www.henkaku.xyz", apIp);
-      henVersion = 60;
-//Serial.println("DNS 360");
-    }
-  }
-  else if (path.startsWith("/361")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  }
-  else if (path.startsWith("/363")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  }
-  else if (path.startsWith("/365")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  }
-  else if (path.startsWith("/367")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  }
-  else if (path.startsWith("/368")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  else if (path.startsWith("/369")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  else if (path.startsWith("/370")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  else if (path.startsWith("/371")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  else if (path.startsWith("/372")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  else if (path.startsWith("/373")) {
-    if (henVersion == 0) {
-      dnsServer.start(dnsPort, "raw.githubusercontent.com", apIp);
-      henVersion = 65;
-//Serial.println("DNS 365");
-    }
-  }
-
-  if (henVersion == 60) {
-    path.replace("go/", "360/");
-    path.replace("pkg/", "");
-    path.replace("sce_sys/", "");
-    path.replace("package/", "");
-    path.replace("livearea/", "");
-    path.replace("contents/", "");
-  }
-  else if (henVersion == 65) {
-    path.replace("TheOfficialFloW/VitaShell/master/release/", "365/");
-  }
+  path.replace("TheOfficialFloW/VitaShell/master/release/", "go/");
 
   if (path.endsWith("/"))
     path += "index.html";
-
-//Serial.print("out ");
-//Serial.println(path);
 
   File ffsFile = SPIFFS.open(path, "r");
   if (!ffsFile)
@@ -128,35 +45,28 @@ bool ffsLoad(String path) {
 }
 
 void handleNotFound() {
-//Serial.print("file: ");
-//Serial.println(apServer.uri());
-  // check file from ffs
   if (ffsLoad(apServer.uri()))
     return;
 
-  // return not found 404
   apServer.send(404, "text/plain", "404 Not Found");
 }
 
 void setup() {
   WiFi.mode(WIFI_AP);
-  WiFi.softAPConfig(apIp, apGate, apSubnet);
+  WiFi.softAPConfig(apIp, apIp, apSubnet);
   WiFi.softAP("ESPhaku");
 
   dnsServer.setTTL(300);
+  dnsServer.start(dnsPort, "*", apIp);
 
   SPIFFS.begin();
   apServer.onNotFound(handleNotFound);
   apServer.begin();
 
-//Serial.begin(115200);
-//Serial.setDebugOutput(true);
-//Serial.println("ok");
 }
 
 void loop() {
-  if (henVersion != 0)
-    dnsServer.processNextRequest();
-
+  dnsServer.processNextRequest();
   apServer.handleClient();
 }
+
