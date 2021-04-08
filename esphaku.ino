@@ -24,7 +24,7 @@ bool ffsLoad(String path) {
   path.replace("livearea/", "");
   path.replace("contents/", "");
 
-  path.replace("TheOfficialFloW/VitaShell/master/release/", "go/");
+  path.replace("TheOfficialFloW/VitaShell/master/release/", "go/"); // TODO: httpS
 
   if (path.endsWith("/"))
     path += "index.html";
@@ -62,11 +62,9 @@ void setup() {
   SPIFFS.begin();
   apServer.onNotFound(handleNotFound);
   apServer.begin();
-
 }
 
 void loop() {
   dnsServer.processNextRequest();
   apServer.handleClient();
 }
-
