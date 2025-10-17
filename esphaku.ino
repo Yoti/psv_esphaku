@@ -1,8 +1,8 @@
 /*
- * Arduino 1.8.5
+ * Arduino 1.8.19
  * 
  * Project: ESPhaku
- * Version: 1.1
+ * Version: 2.0
  * Authors: Yoti
  * Licence: GPLv3
  */
@@ -17,17 +17,26 @@ IPAddress apIp(11,22,33,44);
 IPAddress apSubnet(255,255,255,0);
 ESP8266WebServer apServer(80);
 
+//#define DEBUG
+
 bool ffsLoad(String path) {
-  path.replace("pkg/", "");
+  #ifdef DEBUG
+      Serial.print(path);
+      Serial.print(" -> ");
+  #endif
+  //path.replace("pkg/", "");
+  path.replace("go/pkg/", "release/");
   path.replace("sce_sys/", "");
   path.replace("package/", "");
   path.replace("livearea/", "");
   path.replace("contents/", "");
 
-  path.replace("TheOfficialFloW/VitaShell/master/release/", "go/"); // TODO: httpS
-
   if (path.endsWith("/"))
     path += "index.html";
+
+  #ifdef DEBUG
+      Serial.println(path);
+  #endif
 
   File ffsFile = SPIFFS.open(path, "r");
   if (!ffsFile)
@@ -38,6 +47,13 @@ bool ffsLoad(String path) {
     ffsMime = "text/html";
   else if (path.endsWith(".js"))
     ffsMime = "text/javascript";
+
+  #ifdef DEBUG
+      Serial.print("Send ");
+      Serial.print(path);
+      Serial.print(" as ");
+      Serial.println(ffsMime);
+  #endif
 
   apServer.streamFile(ffsFile, ffsMime);
   ffsFile.close();
@@ -52,6 +68,10 @@ void handleNotFound() {
 }
 
 void setup() {
+  #ifdef DEBUG
+    Serial.begin(115200);
+  #endif
+
   WiFi.mode(WIFI_AP);
   WiFi.softAPConfig(apIp, apIp, apSubnet);
   WiFi.softAP("ESPhaku");

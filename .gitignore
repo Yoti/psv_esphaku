@@ -1,0 +1,6 @@
+data/go
+data/henlo
+data/release
+*.bin
+*.exe
+*.ffs
