@@ -21,10 +21,15 @@ ESP8266WebServer apServer(80);
 
 bool ffsLoad(String path) {
   #ifdef DEBUG
+      Serial.print("Read ");
       Serial.print(path);
       Serial.print(" -> ");
   #endif
-  //path.replace("pkg/", "");
+
+  // Workaround for HENkaku
+  path.replace("go/pkg/hen", "go/hen");
+  path.replace("go/pkg/tai", "go/tai");
+  // Workaround for VitaShell
   path.replace("go/pkg/", "release/");
   path.replace("sce_sys/", "");
   path.replace("package/", "");
