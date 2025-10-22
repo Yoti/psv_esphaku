@@ -10,9 +10,9 @@ ESPhaku IP address is 11.22.33.44
     * Select the "NodeMCU v1.0 (ESP-12E Module)" as target board
     * Select the "4MB (FS:3MB OTA:~512KB)" as flash size
     * Export firmware as binary file by pressing "Ctrl+Alt+S"
-  * Run the "getffs.bat" file and wait for it to complete
+  * Run the "0getffs.bat" file and wait for it to complete
   * Connect the ESP8266 based board to your PC now
-  * Run the "getffs.bat" file and wait for it to complete
+  * Run the "1spiffs.bat" file and wait for it to complete
 
 ## Tested boards
   * NodeMCU v3 "Lolin" by Wemos

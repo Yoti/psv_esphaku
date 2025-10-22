@@ -2,7 +2,7 @@
  * Arduino 1.8.19
  * 
  * Project: ESPhaku
- * Version: 2.0
+ * Version: 2.1
  * Authors: Yoti
  * Licence: GPLv3
  */
@@ -26,10 +26,10 @@ bool ffsLoad(String path) {
       Serial.print(" -> ");
   #endif
 
-  // Workaround for HENkaku
+  // SPIFFS workaround for 3.60 HEN
   path.replace("go/pkg/hen", "go/hen");
   path.replace("go/pkg/tai", "go/tai");
-  // Workaround for VitaShell
+  // SPIFFS workaround for VitaShell
   path.replace("go/pkg/", "release/");
   path.replace("sce_sys/", "");
   path.replace("package/", "");
@@ -68,8 +68,8 @@ bool ffsLoad(String path) {
 void handleNotFound() {
   if (ffsLoad(apServer.uri()))
     return;
-
-  apServer.send(404, "text/plain", "404 Not Found");
+  else
+    apServer.send(404, "text/plain", "404 Not Found");
 }
 
 void setup() {
