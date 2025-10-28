@@ -26,6 +26,11 @@ bool ffsLoad(String path) {
       Serial.print(" -> ");
   #endif
 
+  // SPIFFS workaround for asian PS Vita
+  path.replace("psvita/b/asia", "");
+  path.replace("psvita/b/go", "go");
+  path.replace("psvita/b/henlo", "henlo");
+
   // SPIFFS workaround for 3.60 HEN
   path.replace("go/pkg/hen", "go/hen");
   path.replace("go/pkg/tai", "go/tai");
