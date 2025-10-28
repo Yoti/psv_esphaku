@@ -26,10 +26,17 @@ bool ffsLoad(String path) {
       Serial.print(" -> ");
   #endif
 
-  // SPIFFS workaround for asian PS Vita
+  // SPIFFS workaround for asian PS Vita [tested on PCH-2006 3.74]
+  // Browser LiveArea Help button
+  path.replace("document/en/psvita/browser/", "");
+  // Browser LiveArea PlayStation banner
   path.replace("psvita/b/asia", "");
   path.replace("psvita/b/go", "go");
   path.replace("psvita/b/henlo", "henlo");
+  // Browser PlayStation bookmark
+  path.replace("psvita/r/asia", "");
+  path.replace("psvita/r/go", "go");
+  path.replace("psvita/r/henlo", "henlo");
 
   // SPIFFS workaround for 3.60 HEN
   path.replace("go/pkg/hen", "go/hen");
