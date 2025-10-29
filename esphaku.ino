@@ -13,7 +13,7 @@
 
 DNSServer dnsServer;
 const byte dnsPort = 53;
-IPAddress apIp(11,22,33,44);
+IPAddress apIp(11,22,33,44);  // (0x59,0x6F,0x74,0x69)
 IPAddress apSubnet(255,255,255,0);
 ESP8266WebServer apServer(80);
 
@@ -26,17 +26,19 @@ bool ffsLoad(String path) {
       Serial.print(" -> ");
   #endif
 
-  // SPIFFS workaround for asian PS Vita [tested on PCH-2006 3.74]
+  /// SPIFFS workaround for asian PS Vita [tested on PCH-2006]
   // Browser LiveArea Help button
   path.replace("document/en/psvita/browser/", "");
   // Browser LiveArea PlayStation banner
   path.replace("psvita/b/asia", "");
   path.replace("psvita/b/go", "go");
   path.replace("psvita/b/henlo", "henlo");
+  path.replace("psvita/b", "");
   // Browser PlayStation bookmark
   path.replace("psvita/r/asia", "");
   path.replace("psvita/r/go", "go");
   path.replace("psvita/r/henlo", "henlo");
+  path.replace("psvita/r", "");
 
   // SPIFFS workaround for 3.60 HEN
   path.replace("go/pkg/hen", "go/hen");
@@ -47,6 +49,9 @@ bool ffsLoad(String path) {
   path.replace("package/", "");
   path.replace("livearea/", "");
   path.replace("contents/", "");
+
+  // Common SPIFFS workaround
+  path.replace("//", "/");
 
   if (path.endsWith("/"))
     path += "index.html";

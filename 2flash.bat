@@ -5,6 +5,7 @@ python3 mkfirm.py
 
 if exist esphaku.full.bin (
 	esptool --chip esp8266 write_flash 0x00000000 esphaku.full.bin
+	del /q esphaku.full.bin
 ) else (
 	esptool --chip esp8266 write_flash 0x00000000 esphaku.bin
 	esptool --chip esp8266 write_flash 0x00100000 esphaku.ffs

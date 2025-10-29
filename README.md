@@ -1,5 +1,5 @@
 # psv_esphaku
-PS Vita 3.55-3.60 and 3.65-3.74 HENkaku for [NodeMcu](https://www.nodemcu.com/index_en.html#fr_54747661d775ef1a3600009e) board
+PS Vita 3.55-3.60 and 3.63-3.74 HENkaku for [NodeMcu](https://www.nodemcu.com/index_en.html#fr_54747661d775ef1a3600009e) board
 
 ESPhaku IP address is 11.22.33.44
 
@@ -13,6 +13,7 @@ ESPhaku IP address is 11.22.33.44
   * Run the "0getffs.bat" file and wait for it to complete
   * Connect the ESP8266 based board to your PC now
   * Run the "1spiffs.bat" file and wait for it to complete
+  * Run the "2flash.bat" file and wait for it to complete
 
 ## Tested boards
   * NodeMCU v3 "Lolin" by Wemos
