@@ -1,4 +1,5 @@
 @echo off
+title %~n0
 
 if exist esphaku.ino.nodemcu.bin (
 	if exist esphaku.bin del /q esphaku.bin
