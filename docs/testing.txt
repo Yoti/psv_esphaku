@@ -1,0 +1,19 @@
+﻿ВВОД			СТРОКА				ЗАПРОС
+
+/				http:/				/
+//				http://				/
+///				http://				/
+http:/			http:/				/
+http://			http:/				/
+123				http://123/			/
+vita.com		http://vita.com/	/
+vitawiki.xyz	http://vitawiki.xyz	/
+http://qwe.com	http://qwe.com		/
+11.22.33.44		http://11.22.33.44/	/
+go				http://go/			/
+go/				http://go/			/
+tf				http://tf/			/
+tf/				http://tf/			/
+henlo			http://henlo/		/
+henlo/			http://henlo/		/
+a.a.a			http://a.a.a/		/

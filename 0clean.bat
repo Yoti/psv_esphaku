@@ -7,9 +7,10 @@ if not exist data (
 )
 
 cd data
-if exist go rd /q /s go
-if exist henlo rd /q /s henlo
-if exist release rd /q /s release
+if exist go rmdir /q /s go
+if exist tf rmdir /q /s tf
+if exist henlo rmdir /q /s henlo
+if exist release rmdir /q /s release
 cd ..
 
 if exist esphaku.full.bin del /q esphaku.full.bin

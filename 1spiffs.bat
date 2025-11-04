@@ -10,6 +10,7 @@ if not exist esphaku.bin (
 	pause
 	exit
 )
+rem Tested on v0.2.0 [3.1.0-gcc10.3-e5f9fec]
 where /q mkspiffs.exe
 if %errorlevel% neq 0 (
 	echo Error: mkspiffs.exe not found!
@@ -17,7 +18,6 @@ if %errorlevel% neq 0 (
 	exit
 )
 if exist esphaku.ffs del /q esphaku.ffs
-rem Tested on v0.2.0 [3.1.0-gcc10.3-e5f9fec]
 mkspiffs -c data -b 8192 -s 3125248 esphaku.ffs
 if not exist esphaku.ffs (
 	echo esphaku.ffs is missing!

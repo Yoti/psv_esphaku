@@ -14,7 +14,7 @@ if not exist data (
 
 cd data
 
-if exist go rd /q /s go
+if exist go rmdir /q /s go
 mkdir go
 cd go
 	for %%l in (henkaku.bin, payload.js, pkg/henkaku.skprx, pkg/henkaku.suprx, pkg/taihen.skprx) do (
@@ -29,8 +29,26 @@ cd go
 	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/pkg/henkaku.suprx
 	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/pkg/taihen.skprx
 cd ..
+rmdir go
+if not exist go (
+	echo Error: go dir not found!
+	pause
+	exit
+)
 
-if exist henlo rd /q /s henlo
+if exist tf rmdir /q /s tf
+mkdir tf
+cd tf
+	wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/henkaku.bin
+cd ..
+rmdir tf
+if not exist tf (
+	echo Error: tf dir not found!
+	pause
+	exit
+)
+
+if exist henlo rmdir /q /s henlo
 mkdir henlo
 cd henlo
 	for %%l in (exploit.js, index.html, jsos.js, kernel.js, offsets.js, payload.bin) do (
@@ -44,8 +62,14 @@ cd henlo
 	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/offsets.js
 	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/payload.bin
 cd ..
+rmdir henlo
+if not exist henlo (
+	echo Error: henlo dir not found!
+	pause
+	exit
+)
 
-if exist release rd /q /s release
+if exist release rmdir /q /s release
 mkdir release
 cd release
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/go/pkg/sce_sys/livearea/contents/install_button.png
@@ -58,4 +82,11 @@ cd release
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/release/template.xml
 
 cd ..
+rmdir release
+if not exist release (
+	echo Error: release dir not found!
+	pause
+	exit
+)
+
 pause
