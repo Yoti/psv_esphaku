@@ -1,6 +1,7 @@
 data/go
 data/henlo
 data/release
+data/tf
 *.7z
 *.bin
 *.exe

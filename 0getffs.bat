@@ -40,6 +40,7 @@ if exist tf rmdir /q /s tf
 mkdir tf
 cd tf
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/henkaku.bin
+	wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/pkg/gamesd.skprx
 cd ..
 rmdir tf
 if not exist tf (
