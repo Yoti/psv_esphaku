@@ -41,6 +41,7 @@ bool ffsLoad(String path) {
   path.replace("psvita/r", "");
 
   // SPIFFS workaround for 3.60 HEN
+  path.replace("exploit.html", "index.html");
   path.replace("go/pkg/hen", "go/hen");
   path.replace("go/pkg/tai", "go/tai");
   // SPIFFS workaround for VitaShell
