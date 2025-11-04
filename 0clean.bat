@@ -13,8 +13,8 @@ if exist henlo rmdir /q /s henlo
 if exist release rmdir /q /s release
 cd ..
 
-if exist esphaku.full.bin del /q esphaku.full.bin
 if exist esphaku.bin del /q esphaku.bin
 if exist esphaku.ffs del /q esphaku.ffs
+if exist esphaku.full.bin del /q esphaku.full.bin
 
 pause
