@@ -1,5 +1,17 @@
 @echo off
 title %~n0
+where /q wget.exe
+if %errorlevel% neq 0 (
+	echo Error: wget.exe not found!
+	pause
+	exit
+)
+if not exist data (
+	echo Error: data dir not found!
+	pause
+	exit
+)
+
 cd data
 
 if exist go rd /q /s go
