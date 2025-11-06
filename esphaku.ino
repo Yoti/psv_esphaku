@@ -27,14 +27,14 @@ bool ffsLoad(String path) {
   #endif
 
   /// SPIFFS workaround
-  // ...
+  // Global parser
   path.replace("//", "/");
-  // ...
+  // Root FFS parser
   if (path.equals("/"))
     path = "/index.html";
-  if (path.equals("/go/"))
+  if (path.equals("/go/")) // go.html -> HEN
     path += "index.html";
-  if (path.equals("/tf/"))
+  if (path.equals("/tf/")) // go.html -> S2V
     path += "index.html";
   if (path.equals("/henlo/"))
     path += "index.html";
@@ -49,15 +49,31 @@ bool ffsLoad(String path) {
     // 3.55-3.60 HEN
     if (path.endsWith(".skprx"))
       path.replace("go/pkg", "go");
-    // 3.55-3.60 HEN
     else if (path.endsWith(".suprx"))
       path.replace("go/pkg", "go");
     // VitaShell for 3.55-3.60 HEN
     else
       path.replace("go/pkg", "release");
   }
+  // VitaShell for 3.55-3.60 S2V
+  if (path.indexOf("tf/pkg/sce_sys/livearea/contents") > 0)
+    path.replace("tf/pkg/sce_sys/livearea/contents", "release");
+  if (path.indexOf("tf/pkg/sce_sys/package") > 0)
+    path.replace("tf/pkg/sce_sys/package", "release");
+  if (path.indexOf("tf/pkg/sce_sys") > 0)
+    path.replace("tf/pkg/sce_sys", "release");
+  if (path.indexOf("tf/pkg") > 0) {
+    // 3.55-3.60 S2V
+    if (path.endsWith(".skprx"))
+      path.replace("tf/pkg", "tf");
+    else if (path.endsWith(".suprx"))
+      path.replace("tf/pkg", "tf");
+    // VitaShell for 3.55-3.60 S2V
+    else
+      path.replace("tf/pkg", "release");
+  }
 
-  // Browser LiveArea Help button
+  // Browser LiveArea buttons
   if (path.startsWith("/document/")) {
     #ifdef DEBUG
       Serial.print("[startsWith=/document/] ");
@@ -72,12 +88,19 @@ bool ffsLoad(String path) {
       path = "/go.html";
     if (path.endsWith("/go/"))
       path = "/go/index.html";
+    // 3.55-3.60 S2V main page
+    if (path.indexOf("/tf/tf.html") > 0)
+      path = "/tf/index.html";
+    if (path.endsWith("tf.html"))
+      path = "/tf.html";
+    if (path.endsWith("/tf/"))
+      path = "/tf/index.html";
     // 3.63-3.74 HEN main page
     if (path.endsWith("/browser/henlo/"))
       path = "/henlo/index.html";
     if (path.endsWith("henlo.html"))
       path = "/henlo.html";
-    // ...
+    // HEN index page or global index page
     if ((!path.endsWith("/go/index.html")) && (!path.endsWith("/tf/index.html")) && (!path.endsWith("/henlo/index.html")) && (path.endsWith("index.html")))
       path = "/index.html";
     // 3.55-3.60 HEN additional files
@@ -93,6 +116,21 @@ bool ffsLoad(String path) {
       if (path.endsWith("/go/taihen.skprx"))
         path = "/go/taihen.skprx";
     }
+    // 3.55-3.60 S2V additional files
+    if (path.indexOf("/browser/tf/") > 0) {
+      if (path.endsWith("/tf/gamesd.skprx"))
+        path = "/tf/gamesd.skprx";
+      if (path.endsWith("/tf/henkaku.bin"))
+        path = "/tf/henkaku.bin";
+      if (path.endsWith("/tf/henkaku.skprx"))
+        path = "/tf/henkaku.skprx";
+      if (path.endsWith("/tf/henkaku.suprx"))
+        path = "/tf/henkaku.suprx";
+      if (path.endsWith("/tf/payload.js"))
+        path = "/tf/payload.js";
+      if (path.endsWith("/tf/taihen.skprx"))
+        path = "/tf/taihen.skprx";
+    }
     // 3.63-3.74 HEN additional files
     if (path.indexOf("/browser/henlo/") > 0) {
       if (path.endsWith("/henlo/exploit.js"))
@@ -106,6 +144,22 @@ bool ffsLoad(String path) {
       if (path.endsWith("/henlo/payload.bin"))
         path = "/henlo/payload.bin";
     }
+  }
+  // Asian PS Vita specific
+  if (path.startsWith("/psvita/b/")) {
+    #ifdef DEBUG
+      Serial.print("[startsWith=/psvita/b/] ");
+    #endif
+    if (!path.endsWith("/")) {
+      Serial.print(path + " ");
+      if (!path.endsWith(".html")) {
+        path = "/index.html";
+      }
+    }
+    /*
+    if ((!path.endsWith("/")) && (!path.endsWith(".html")))
+      path = "/index.html";
+    */
   }
 
   #ifdef DEBUG

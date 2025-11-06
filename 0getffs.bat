@@ -39,8 +39,12 @@ if not exist go (
 if exist tf rmdir /q /s tf
 mkdir tf
 cd tf
-	wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/henkaku.bin
-	wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/pkg/gamesd.skprx
+	for %%l in (henkaku.bin, payload.js, pkg/gamesd.skprx, pkg/henkaku.skprx, pkg/henkaku.suprx, pkg/taihen.skprx) do (
+		echo Loading %%l...
+		wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/%%l
+	)
+	echo Loading exploit.html...
+	wget -q --show-progress --tries=inf -O index.html http://vitawiki.xyz/tf/exploit.html
 cd ..
 rmdir tf
 if not exist tf (
