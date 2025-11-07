@@ -29,7 +29,30 @@ bool ffsLoad(String path) {
   int pathLastIndexOf = -1;
   String pathAfterLastIndexOf = "";
 
-  /// WebServer
+  // Regional fixes
+  if (path.indexOf("/psvita/b/") > -1) {
+    #ifdef DEBUG
+      Serial.print("[asia] ");
+    #endif
+    path.replace("/psvita/b/", "/");
+  }
+
+  // WebServer
+  if (!path.endsWith("/") && !path.endsWith(".bin")
+  && !path.endsWith(".html") && !path.endsWith(".js")
+  && !path.endsWith(".png") && !path.endsWith(".sfo")
+  && !path.endsWith("prx") && !path.endsWith(".xml")) {
+    #ifdef DEBUG
+      Serial.print("[other] ");
+    #endif
+    if (path.endsWith(".pkg"))
+      path = "EmptyPath.pkg";
+    else
+      path = "/index.html";
+  }
+
+  else
+
   // 3.55-3.60 HENkaku
   if (path.endsWith("/go/"))
     path = "/go/index.html";
@@ -37,8 +60,12 @@ bool ffsLoad(String path) {
   else if (path.endsWith("/tf/"))
     path = "/tf/index.html";
   // 3.63-3.74 HENkaku
-  //else if (path.endsWith("/henlo/henlo.html"))
-    //path = "/henlo/index.html";
+  else if (path.endsWith("/henlo/henlo.html")) {
+    #ifdef DEBUG
+      Serial.print("[/henlo/henlo.html] ");
+    #endif
+    path = "/henlo/index.html";
+  }
   // WebServer
   else if (path.endsWith("/"))
     path = "/index.html";
