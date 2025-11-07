@@ -145,21 +145,34 @@ bool ffsLoad(String path) {
         path = "/henlo/payload.bin";
     }
   }
-  // Asian PS Vita specific
+  // Asian PS Vita specific PS button
   if (path.startsWith("/psvita/b/")) {
     #ifdef DEBUG
       Serial.print("[startsWith=/psvita/b/] ");
     #endif
     if (!path.endsWith("/")) {
-      Serial.print(path + " ");
+      // Root path
+      Serial.print("!!!" + path + "!!! ");
       if (!path.endsWith(".html")) {
         path = "/index.html";
+      } else if (path.endsWith("go.html")) {
+        path = "/go.html"; // ??? /go/index
+      } else if (path.endsWith("tf.html")) {
+        path = "/tf.html"; // ??? /tf/index
+      } else if (path.endsWith("henlo.html")) {
+        path = "/henlo.html";
+      }
+    } else {
+      if (path.indexOf("/henlo/")) {
+        Serial.print(">>>"+path+"<<< ");
+        // заменить путь до последнего / на /henlo/ -> lastIndexOf
+        int pathLastIndexOf = path.lastIndexOf("/");
+        Serial.print(pathLastIndexOf);
+        String pathAfterLastIndexOf = path.substring(pathLastIndexOf);
+        Serial.print(pathAfterLastIndexOf);
+        //Serial.print(path.lastIndexOf("/"));
       }
     }
-    /*
-    if ((!path.endsWith("/")) && (!path.endsWith(".html")))
-      path = "/index.html";
-    */
   }
 
   #ifdef DEBUG

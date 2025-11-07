@@ -6,7 +6,7 @@ if exist esphaku.ino.nodemcu.bin (
 	ren esphaku.ino.nodemcu.bin esphaku.bin
 )
 if not exist esphaku.bin (
-	echo esphaku.bin is missing!
+	echo Error: esphaku.bin is missing!
 	pause
 	exit
 )
@@ -20,7 +20,7 @@ if %errorlevel% neq 0 (
 if exist esphaku.ffs del /q esphaku.ffs
 mkspiffs -c data -b 8192 -s 3125248 esphaku.ffs
 if not exist esphaku.ffs (
-	echo esphaku.ffs is missing!
+	echo Error: esphaku.ffs is missing!
 	pause
 	exit
 )

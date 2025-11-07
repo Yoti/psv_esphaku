@@ -18,18 +18,13 @@ if exist go rmdir /q /s go
 mkdir go
 cd go
 	for %%l in (henkaku.bin, payload.js, pkg/henkaku.skprx, pkg/henkaku.suprx, pkg/taihen.skprx) do (
-		echo Loading %%l...
+rem		echo Loading %%l...
 		wget -q --show-progress --tries=inf http://vitawiki.xyz/go/%%l
 	)
-	echo Loading exploit.html...
+rem	echo Loading exploit.html...
 	wget -q --show-progress --tries=inf -O index.html http://vitawiki.xyz/go/exploit.html
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/henkaku.bin
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/payload.js
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/pkg/henkaku.skprx
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/pkg/henkaku.suprx
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/go/pkg/taihen.skprx
 cd ..
-rmdir go
+rmdir go>nul 2>&1
 if not exist go (
 	echo Error: go dir not found!
 	pause
@@ -40,13 +35,13 @@ if exist tf rmdir /q /s tf
 mkdir tf
 cd tf
 	for %%l in (henkaku.bin, payload.js, pkg/gamesd.skprx, pkg/henkaku.skprx, pkg/henkaku.suprx, pkg/taihen.skprx) do (
-		echo Loading %%l...
+rem		echo Loading %%l...
 		wget -q --show-progress --tries=inf http://vitawiki.xyz/tf/%%l
 	)
-	echo Loading exploit.html...
+rem	echo Loading exploit.html...
 	wget -q --show-progress --tries=inf -O index.html http://vitawiki.xyz/tf/exploit.html
 cd ..
-rmdir tf
+rmdir tf>nul 2>&1
 if not exist tf (
 	echo Error: tf dir not found!
 	pause
@@ -57,17 +52,11 @@ if exist henlo rmdir /q /s henlo
 mkdir henlo
 cd henlo
 	for %%l in (exploit.js, index.html, jsos.js, kernel.js, offsets.js, payload.bin) do (
-		echo Loading %%l...
+rem		echo Loading %%l...
 		wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/%%l
 	)
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/exploit.js
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/index.html
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/jsos.js
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/kernel.js
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/offsets.js
-	REM wget -q --show-progress --tries=inf http://vitawiki.xyz/henlo/payload.bin
 cd ..
-rmdir henlo
+rmdir henlo>nul 2>&1
 if not exist henlo (
 	echo Error: henlo dir not found!
 	pause
@@ -87,7 +76,7 @@ cd release
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/release/template.xml
 
 cd ..
-rmdir release
+rmdir release>nul 2>&1
 if not exist release (
 	echo Error: release dir not found!
 	pause
