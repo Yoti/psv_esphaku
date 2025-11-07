@@ -27,6 +27,7 @@ bool ffsLoad(String path) {
   #endif
 
   int pathLastIndexOf = -1;
+  String patternToFindInString = "";
   String pathAfterLastIndexOf = "";
 
   // Regional fixes
@@ -35,6 +36,17 @@ bool ffsLoad(String path) {
       Serial.print("[asia] ");
     #endif
     path.replace("/psvita/b/", "/");
+  }
+
+  // Help button fixes
+  if (path.indexOf("/browser/") > -1) {
+    #ifdef DEBUG
+      Serial.print("[docs] ");
+    #endif
+    patternToFindInString = "/browser";
+    pathLastIndexOf = path.lastIndexOf(patternToFindInString) + patternToFindInString.length();
+    pathAfterLastIndexOf = path.substring(pathLastIndexOf);
+    path = pathAfterLastIndexOf;
   }
 
   // WebServer
