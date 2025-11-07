@@ -13,23 +13,23 @@ index.html
 // tf	bin js skprx suprx html
 henkaku.bin
 payload.js
-gamesd.skprx
+gamesd.skprx	GAMESD.SKPRX
 henkaku.skprx
 henkaku.suprx
 taihen.skprx
 index.html
 // henlo	js html bin
-exploit.js
+exploit.js		EXPLOIT.JS
 index.html
-jsos.js
-kernel.js
-offsets.js
-payload.bin
+jsos.js			JSOS.JS
+kernel.js		KERNEL.JS
+offsets.js		OFFSETS.JS
+payload.bin		PAYLOAD.BIN
 // VitaShell	PNG bin SFO XML
 install_button.png
 bg.png
-eboot.bin
-head.bin
+eboot.bin		EBOOT.BIN
+head.bin		HEAD.BIN
 icon0.png
 param.sfo
 startup.png
