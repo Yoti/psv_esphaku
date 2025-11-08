@@ -2,7 +2,7 @@
  * Arduino 1.8.19
  * 
  * Project: ESPhaku
- * Version: 2.1
+ * Version: 3.0
  * Authors: Yoti
  * Licence: GPLv3
  */
@@ -21,14 +21,13 @@ ESP8266WebServer apServer(80);
 
 bool ffsLoad(String path) {
   #ifdef DEBUG
-    Serial.print("Read ");
-    Serial.print(path);
-    Serial.print(" -> ");
+    Serial.print("Read " + path + " -> ");
   #endif
 
   int pathLastIndexOf = -1;
   String patternToFindInString = "";
   String pathAfterLastIndexOf = "";
+  String psVitaUpdateServer = "";
 
   // Regional fixes
   if ((path.indexOf("/psvita/b/") > -1) || (path.indexOf("/psvita/r/") > -1)) {
@@ -90,9 +89,22 @@ bool ffsLoad(String path) {
     #ifdef DEBUG
       Serial.print("[.png|.sfo|.xml] ");
     #endif
-    pathLastIndexOf = path.lastIndexOf("/");
-    pathAfterLastIndexOf = path.substring(pathLastIndexOf);
-    path = "/release" + pathAfterLastIndexOf;
+
+    // Internet connection test
+    if (path.endsWith("psp2-updatelist.xml")) {
+      pathLastIndexOf = path.lastIndexOf("/list/"); // 6
+      pathAfterLastIndexOf = path.substring(pathLastIndexOf + 6);
+      psVitaUpdateServer = pathAfterLastIndexOf.substring(0, 2);
+      #ifdef DEBUG
+        Serial.print("[" + psVitaUpdateServer + "] ");
+      #endif
+      // There is no need to keep all the regions
+      path = "/release/" + pathAfterLastIndexOf;
+    } else {
+      pathLastIndexOf = path.lastIndexOf("/");
+      pathAfterLastIndexOf = path.substring(pathLastIndexOf);
+      path = "/release" + pathAfterLastIndexOf;
+    }
   }
 
   else
@@ -161,8 +173,7 @@ bool ffsLoad(String path) {
   }
 
   #ifdef DEBUG
-    Serial.print("[final] ");
-    Serial.println(path);
+    Serial.println("[final] " + path);
   #endif
 
   File ffsFile = SPIFFS.open(path, "r");
@@ -180,10 +191,7 @@ bool ffsLoad(String path) {
     ffsMime = "text/javascript";
 
   #ifdef DEBUG
-      Serial.print("Send ");
-      Serial.print(path);
-      Serial.print(" as ");
-      Serial.println(ffsMime);
+      Serial.println("Send " + path + " as " + ffsMime);
       Serial.println("");
   #endif
 

@@ -74,7 +74,14 @@ cd release
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/release/param.sfo
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/release/startup.png
 	wget -q --show-progress --tries=inf http://vitawiki.xyz/release/template.xml
-
+rem	wget -q --show-progress --tries=inf http://fjp01.psp2.update.playstation.net/update/psp2/list/jp/psp2-updatelist.xml
+	for %%r in (au, cn, eu, jp, kr, mx, ru, sa, tw, uk, us) do (
+		if exist %%r rmdir /s /q %%r
+		mkdir %%r
+		cd %%r
+		wget -q --show-progress --tries=inf http://f%%r01.psp2.update.playstation.net/update/psp2/list/%%r/psp2-updatelist.xml
+		cd ..
+	)
 cd ..
 rmdir release>nul 2>&1
 if not exist release (
