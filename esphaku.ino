@@ -31,11 +31,12 @@ bool ffsLoad(String path) {
   String pathAfterLastIndexOf = "";
 
   // Regional fixes
-  if (path.indexOf("/psvita/b/") > -1) {
+  if ((path.indexOf("/psvita/b/") > -1) || (path.indexOf("/psvita/r/") > -1)) {
     #ifdef DEBUG
       Serial.print("[asia] ");
     #endif
     path.replace("/psvita/b/", "/");
+    path.replace("/psvita/r/", "/");
   }
 
   // Help button fixes
