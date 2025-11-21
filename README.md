@@ -1,5 +1,5 @@
 # psv_esphaku
-PS Vita 3.55-3.60 and 3.63-3.74 HENkaku for [NodeMcu](https://www.nodemcu.com/index_en.html#fr_54747661d775ef1a3600009e) board
+PS Vita/TV 3.55-3.60 and 3.63-3.74 HENkaku for [NodeMcu](https://www.nodemcu.com/index_en.html#fr_54747661d775ef1a3600009e) board
 
 ESPhaku IP address is 11.22.33.44
 
@@ -22,11 +22,11 @@ ESPhaku IP address is 11.22.33.44
 ## Usage (PS Vita/TV)
   * Connect your PS Vita/TV to the "ESPhaku" [access point](https://manuals.playstation.net/document/en/psvita/settings/internet.html)
   * Select the [Browser](https://manuals.playstation.net/document/en/psvita/browser/livearea.html) application from the [home screen](https://manuals.playstation.net/document/en/psvita/basic/screens.html)
-    * Press Help button (the "B" one) **OR**
-    * Press PS banner (the "D" one) **OR**
-    * Start Browser (the "C" one) and select PS bookmark **OR**
+    * Press Help button (the "B" one) **OR**<details><summary>Screenshot</summary>![Screenshot](docs/PCH-2006/01.jpg)</details>
+    * Press PS banner (the "D" one) **OR**<details><summary>Screenshot</summary>![Screenshot](docs/PCH-2006/02.jpg)</details>
+    * Start Browser (the "C" one) and select official PS website bookmark **OR**<details><summary>Screenshot</summary>![Screenshot](docs/PCH-2006/03.jpg)</details>
     * Start Browser (the "C" one) and enter something like "/" to the [address bar](https://manuals.playstation.net/document/en/psvita/browser/browse.html) (the "C" one, again)
   * Read the text on the screen
 
 ## Tested boards
-  * NodeMCU v3 "Lolin" by Wemos [AliExpress](https://aliexpress.com/item/1005001566320429.html)
+  * NodeMCU v3 "Lolin" by Wemos (at [AliExpress](https://aliexpress.com/item/1005001566320429.html))
