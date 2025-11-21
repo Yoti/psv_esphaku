@@ -17,7 +17,7 @@ IPAddress apIp(11,22,33,44);  // (0x59,0x6F,0x74,0x69)
 IPAddress apSubnet(255,255,255,0);
 ESP8266WebServer apServer(80);
 
-#define DEBUG
+//#define DEBUG
 
 bool ffsLoad(String path) {
   #ifdef DEBUG
